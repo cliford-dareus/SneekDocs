@@ -4,17 +4,21 @@ import jwt from 'jsonwebtoken';
 
 
 export const checkAuth = ( req: Request, res: Response, next: NextFunction) => {
-    const token = <string>req.headers["auth"];
-    let jwtPayload;
+    const token = <string>req.headers.authorization?.split(" ")[1];
+
+    let jwtPayLoad;
 
     try {
-        jwtPayload = <any>jwt.verify(token, process.env.JWT_SECRET!);
-        res.locals.jwtPayload = jwtPayload;
+        jwtPayLoad =<any>jwt.verify(token, process.env.JWT_SECRET!);
+        res.locals.jwtPayLoad = jwtPayLoad;
     } catch (error) {
         res.status(401).send();
+        return;
     }
 
-    const { userId, name } = jwtPayload;
+    console.log(jwtPayLoad)
+
+    const { userId, name } = jwtPayLoad;
 
     const newToken = jwt.sign({ userId, name }, process.env.JWT_SECRET!, {
     expiresIn: "1h"
