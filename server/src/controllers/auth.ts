@@ -47,7 +47,7 @@ const login = async ( req:Request, res: Response ) => {
 
     const token = jwt.sign({ userId: user._id, name: user.name }, process.env.JWT_SECRET!)
     
-    res.send(token)
+    res.send({ userId: user._id, name: user.name }, token)
 }
 
 export { registerUser, login };
