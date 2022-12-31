@@ -1,5 +1,5 @@
 import express from "express";
-import { getDoc } from "../controllers/document";
+import { getDoc } from "../controllers/doc";
 import { checkAuth } from "../middleware/checkAuth";
 
 const router = express.Router();

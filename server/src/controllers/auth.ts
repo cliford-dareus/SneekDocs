@@ -1,4 +1,4 @@
-import { application, Request, Response } from "express";
+import { Request, Response } from "express";
 import User from "../models/user";
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken';
@@ -47,7 +47,7 @@ const login = async ( req:Request, res: Response ) => {
 
     const token = jwt.sign({ userId: user._id, name: user.name }, process.env.JWT_SECRET!)
     
-    res.send({ userId: user._id, name: user.name }, token)
+    res.send({ userId: user._id, name: user.name , token})
 }
 
 export { registerUser, login };
