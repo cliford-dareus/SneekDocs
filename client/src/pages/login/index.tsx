@@ -1,7 +1,8 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Form from '../../components/Form';
 import { useLoginUserMutation } from '../../features/api';
+import { setUser } from '../../features/global';
 
 interface loginInerface {
     email: string,
@@ -9,30 +10,38 @@ interface loginInerface {
 };
 
 const Login = () => {
-    const [ loginUser, { data } ] = useLoginUserMutation();
+    const [ loginUser, { data, isSuccess } ] = useLoginUserMutation();
     const [ userInfo, setUserInfo ] = useState<loginInerface>({ email: '', password: '' });
 
     const onSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const { email, password } = userInfo;
 
-         try {
-            if(!email || !password){
-                console.log('email please')
-                return
-            };
+        if(!email || !password){
+            console.log('email please')
+            return
+        };
+
+        try {
             const body = { email, password };
             loginUser(body);
-            console.log(data);
             setUserInfo({ email: '', password: '' });
-         } catch (error) {
+        } catch (error) {
             console.log(error);
-         }
+        }
     };
+
+    
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setUserInfo({...userInfo, [event.target.name]: event.target.value })        
     };
+
+    useEffect(()=> {
+        if(isSuccess){
+            localStorage.setItem('userInfo', JSON.stringify({...data}));
+        }
+    }, [isSuccess])
 
   return (
     <div className='width-full h-full flex flex-col justify-center items-center bg-black'>
@@ -63,7 +72,7 @@ const Login = () => {
                 Sign In
             </button>
 
-            <p className='text-white mt-5 text-md'>Don't have an account yet! <Link className='text-sky-700 underline' to='/register'>Sign Up Here</Link></p>
+            <p className='text-white mt-5 text-md'>Don't have an account yet! <Link className='text-sky-700 underline ml-2' to='/register'>Sign Up Here</Link></p>
         </form>
     </div>
   )

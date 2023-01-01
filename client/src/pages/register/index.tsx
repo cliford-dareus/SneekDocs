@@ -75,7 +75,7 @@ const Register = () => {
                 Sign Up
             </button>
 
-            <p className='text-white mt-5 text-md'>Don't have an account yet! <Link className='text-sky-700 underline' to='/login'>Sign Up Here</Link></p>
+            <p className='text-white mt-5 text-md'>Already have an account! <Link className='text-sky-700 underline ml-2' to='/login'>Sign In Here</Link></p>
         </form>
     </div>
   )
