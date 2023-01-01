@@ -1,37 +1,52 @@
-import React from 'react';
+import React, { useState, ChangeEvent } from 'react';
+import Form from '../../components/Form';
+
+interface registerInterface {
+    name: string;
+    email: string;
+    password: string
+}
 
 const Register = () => {
+    const [ userInfo, setUserInfo ] = useState<registerInterface>({
+        name: '',email: '', password: ''
+    });
+
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setUserInfo({...userInfo, [event.target.name] : event.target.value});
+    }
+
   return (
-    <div className='width-full h-full flex flex-col justify-center items-center bg-violet-900'>
-        <h1>Register</h1>
+    <div className='width-full h-full flex flex-col justify-center items-center bg-black'>
+        <h1 className='text-white text-2xl'>Register</h1>
         <form action="" 
             className='w-1/3 flex flex-col'
         >
-            <label htmlFor=""
-                className='mt-3'
-            >
-                Name
-            </label>
-            <input 
-                className='px-2 py-1 border-solid border outline-none mt-1'
-                type="text" 
-                placeholder='name'
+           <Form
+                name='name'
+                placeholder='Name'
+                value={userInfo.name}
+                type='text'
+                onchange={handleChange}
+           />
+
+            <Form 
+                name='email'
+                placeholder='Email'
+                value={userInfo.email}
+                type='email'
+                onchange={handleChange}
             />
 
-            <label htmlFor="">Email</label>
-            <input 
-                className='px-2 py-1'
-                type="text" 
-                placeholder='email'
-            />
-            <label htmlFor="">Password</label>
-            <input 
-                className='px-2 py-1'
-                type="text" 
+            <Form 
+                name='password'
                 placeholder='Password'
+                value={userInfo.password}
+                type='password'
+                onchange={handleChange}
             />
             <button
-                className='cursor-pointer'
+                className='cursor-pointer mt-5 bg-sky-900 text-white py-2 rounded-md'
             >
                 Sign Up
             </button>
