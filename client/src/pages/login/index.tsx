@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Form from '../../components/Form';
 import { useLoginUserMutation } from '../../features/api';
 import { useAppSelector, useAppDispatch } from '../../app/hook';
@@ -14,6 +14,7 @@ const Login = () => {
     const dispatch = useAppDispatch();
     const [ loginUser, { data, isSuccess } ] = useLoginUserMutation();
     const [ userInfo, setUserInfo ] = useState<loginInerface>({ email: '', password: '' });
+    const Navigate = useNavigate();
 
     const onSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -33,8 +34,6 @@ const Login = () => {
         }
     };
 
-    
-
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setUserInfo({...userInfo, [event.target.name]: event.target.value })        
     };
@@ -42,8 +41,9 @@ const Login = () => {
     useEffect(()=> {
         if(isSuccess){
             dispatch(setUser(data))
+            Navigate('/');
         }
-    }, [isSuccess])
+    }, [ isSuccess ]);
 
   return (
     <div className='width-full h-full flex flex-col justify-center items-center bg-black'>

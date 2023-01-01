@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const info = localStorage.getItem("userInfo")? JSON.parse(localStorage.getItem("userInfo")!): '';
 
@@ -6,7 +6,8 @@ const info = localStorage.getItem("userInfo")? JSON.parse(localStorage.getItem("
 const initialState = {
     userName: info.name,
     userId: info.userId,
-    token: info.token
+    token: info.token,
+    isLogin: info.isLogin
 };
 
 console.log(initialState)
@@ -16,8 +17,7 @@ export const globalSlice = createSlice({
     initialState,
     reducers: {
         setUser: (state, action) => {
-            console.log(action)
-            { state.userName = action.payload.name, state.userId= action.payload.userId, state.token = action.payload.token }
+            { state.userName = action.payload.name, state.userId= action.payload.userId, state.token = action.payload.token, state.isLogin = true }
             localStorage.setItem('userInfo', JSON.stringify(state));
         }
     }
