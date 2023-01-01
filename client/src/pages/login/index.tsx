@@ -2,6 +2,7 @@ import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Form from '../../components/Form';
 import { useLoginUserMutation } from '../../features/api';
+import { useAppSelector, useAppDispatch } from '../../app/hook';
 import { setUser } from '../../features/global';
 
 interface loginInerface {
@@ -10,6 +11,7 @@ interface loginInerface {
 };
 
 const Login = () => {
+    const dispatch = useAppDispatch();
     const [ loginUser, { data, isSuccess } ] = useLoginUserMutation();
     const [ userInfo, setUserInfo ] = useState<loginInerface>({ email: '', password: '' });
 
@@ -39,7 +41,7 @@ const Login = () => {
 
     useEffect(()=> {
         if(isSuccess){
-            localStorage.setItem('userInfo', JSON.stringify({...data}));
+            dispatch(setUser(data))
         }
     }, [isSuccess])
 
