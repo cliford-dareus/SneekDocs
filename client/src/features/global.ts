@@ -4,7 +4,7 @@ const info = localStorage.getItem("userInfo")? JSON.parse(localStorage.getItem("
 
 
 const initialState = {
-    userName: info.name,
+    userName: info.userName,
     userId: info.userId,
     token: info.token,
     isLogin: info.isLogin
@@ -17,7 +17,13 @@ export const globalSlice = createSlice({
     initialState,
     reducers: {
         setUser: (state, action) => {
-            { state.userName = action.payload.name, state.userId= action.payload.userId, state.token = action.payload.token, state.isLogin = true }
+            { 
+                state.userName = action.payload.name, 
+                state.userId= action.payload.userId, 
+                state.token = action.payload.token, 
+                state.isLogin = true 
+            }
+
             localStorage.setItem('userInfo', JSON.stringify(state));
         }
     }
