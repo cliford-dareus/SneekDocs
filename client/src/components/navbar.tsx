@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <header className='width-full flex justify-between py-4 px-8'>
         <Link to='/' className='text-2xl '>SNEEKDOCS</Link>
-        <div className='w-1/3'>
+        {<div className='w-1/3'>
            <Form 
                 name=''
                 placeholder='Search'
@@ -14,7 +14,7 @@ const Navbar = () => {
                 type='search'
                 onchange={()=>{}}
             /> 
-        </div>
+        </div>}
         
         <div className=''>
             <div className='flex items-center gap-4'>
