@@ -46,11 +46,11 @@ const Login = () => {
     }, [ isSuccess ]);
 
   return (
-    <div className='width-full h-full flex flex-col justify-center items-center bg-black'>
+    <div className='width-full h-full p-8 flex flex-col justify-center items-center bg-black'>
         <h1 className='text-white text-2xl'>Login</h1>
 
         <form
-            className='w-1/3 flex flex-col'
+            className='w-full md:w-1/2 flex flex-col'
             onSubmit={onSubmit}
         >
             <Form 
