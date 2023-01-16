@@ -1,15 +1,25 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
+import { useAppSelector, useAppDispatch } from "../../app/hook";
 import { Link } from "react-router-dom";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "react-quill/dist/quill.bubble.css";
+import { useCreateDocMutation } from "../../features/api";
 
 const CreateDoc = () => {
   const [value, setValue] = useState<string>("");
   const editorRef = useRef<ReactQuill>(null);
   const editor = editorRef.current?.getEditor();
   const editorPriv = editorRef.current?.makeUnprivilegedEditor(editor!);
-  console.log(editorPriv?.getHTML())
+
+  const [create] = useCreateDocMutation();
+
+  const saveDoc = async () => {
+    await create({ content: value, name: "World" });
+    console.log("saved");
+  };
+
+  // console.log(editorPriv?.getHTML())
   return (
     <div className="bg-black h-full">
       <div className="w-full py-4 px-8">
@@ -32,8 +42,12 @@ const CreateDoc = () => {
         theme="bubble"
         value={editorPriv?.getHTML()}
         readOnly
-        style={{color: 'white'}}
+        style={{ color: "white" }}
       />
+
+      <button onClick={saveDoc} className="bg-white">
+        Save
+      </button>
     </div>
   );
 };

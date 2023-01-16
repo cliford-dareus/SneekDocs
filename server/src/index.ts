@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded())
 
 app.use('/api/v1/auth', authRoute);
-app.use('/api/v1/user', docRouter);
+app.use('/api/v1/doc', docRouter)
 
 const PORT = process.env.PORT;
 const start =async () => {

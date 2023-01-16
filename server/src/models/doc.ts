@@ -4,19 +4,22 @@ mongoose.set('strictQuery', false);
 const DocSchema = new mongoose.Schema({
     name: {
         type: String,
-        require: true,
-        min: 5
+        min: 5,
+        default: 'Untitle'
     },
     user: {
         type: mongoose.Types.ObjectId,
         ref: 'User',
-        require: true
+        required: true
     },
     content: {
         type: String,
-        requuire: true
+        required: true
+    },
+    favorite: {
+        type: Boolean,
+        default: false
     }
-
 },{
     timestamps: true
 });

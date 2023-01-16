@@ -1,28 +1,26 @@
 import { NextFunction, Request, Response } from "express";
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
 
-export const checkAuth = ( req: Request, res: Response, next: NextFunction) => {
-    const token = <string>req.headers.authorization?.split(" ")[1];
+export const checkAuth = (req: Request, res: Response, next: NextFunction) => {
+  const token = <string>req.headers.authorization?.split(" ")[1];
 
-    let jwtPayLoad;
+  let jwtPayLoad;
 
-    try {
-        jwtPayLoad =<any>jwt.verify(token, process.env.JWT_SECRET!);
-        res.locals.jwtPayLoad = jwtPayLoad;
-    } catch (error) {
-        res.status(401).send();
-        return;
-    }
+  try {
+    jwtPayLoad = <any>jwt.verify(token, process.env.JWT_SECRET!);
+    res.locals.jwtPayLoad = jwtPayLoad;
+  } catch (error) {
+    res.status(401).send();
+    return;
+  }
 
-    console.log(jwtPayLoad)
+  const { userId, name } = jwtPayLoad;
 
-    const { userId, name } = jwtPayLoad;
-
-    const newToken = jwt.sign({ userId, name }, process.env.JWT_SECRET!, {
-    expiresIn: "1h"
+  const newToken = jwt.sign({ userId, name }, process.env.JWT_SECRET!, {
+    expiresIn: "1h",
   });
-    res.setHeader("token", newToken);
+  res.setHeader("token", newToken);
 
   //Call the next middleware or controller
-    next();
+  next();
 };

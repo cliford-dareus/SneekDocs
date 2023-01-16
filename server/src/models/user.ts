@@ -4,17 +4,17 @@ mongoose.set('strictQuery', false);
 const UserSchema = new mongoose.Schema({
     name: {
         type: String,
-        require: true,
+        required: true,
         min: 5,
         max: 12
     },
     email: {
         type: String,
-        require: true,
+        required: true,
     },
     password: {
         type: String,
-        require: true,
+        required: true,
         min: 4
     }
 },{

@@ -1,9 +1,9 @@
 import express from "express";
-import { getDoc } from "../controllers/doc";
+import { createDoc, getDoc } from "../controllers/doc";
 import { checkAuth } from "../middleware/checkAuth";
 
 const router = express.Router();
 
-router.get('/doc', checkAuth, getDoc);
+router.route('/create').post( checkAuth, createDoc);
 
 export default router;
