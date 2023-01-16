@@ -19,7 +19,7 @@ const CreateDoc = () => {
     console.log("saved");
   };
 
-  // console.log(editorPriv?.getHTML())
+  console.log(editorRef.current);
   return (
     <div className="bg-black h-full">
       <div className="w-full py-4 px-8">
