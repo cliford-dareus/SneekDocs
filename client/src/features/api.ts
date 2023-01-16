@@ -13,6 +13,7 @@ export const apiSlice = createApi({
       return headers;
     },
   }),
+  tagTypes: ["docs"],
   endpoints: (build) => ({
     registerUser: build.mutation({
       query: (body) => ({
@@ -34,6 +35,13 @@ export const apiSlice = createApi({
         method: "POST",
         body,
       }),
+      invalidatesTags: ['docs']
+    }),
+    getDocs: build.query({
+      query: () => ({
+        url: "/api/v1/doc",
+      }),
+      providesTags: ["docs"],
     }),
   }),
 });
@@ -42,4 +50,5 @@ export const {
   useRegisterUserMutation,
   useLoginUserMutation,
   useCreateDocMutation,
+  useGetDocsQuery
 } = apiSlice;

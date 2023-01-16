@@ -4,8 +4,8 @@ import Form from './Form';
 
 const Navbar = () => {
   return (
-    <header className='width-full flex justify-between py-4 px-8'>
-        <Link to='/' className='text-2xl '>SNEEKDOCS</Link>
+    <header className='width-full flex justify-between py-4 px-4 border-b'>
+        <Link to='/' className='text-2xl text-white'>SNEEKDOCS</Link>
         {<div className='hidden md:flex w-1/3'>
            <Form 
                 name=''
@@ -18,7 +18,7 @@ const Navbar = () => {
         
         <div className=''>
             <div className='flex items-center gap-4'>
-                <p className='text-xs'>Welcome, <br/> <b className='text-sm'>Cliford</b> </p>
+                <p className='text-xs text-white'>Welcome, <br/> <b className='text-sm'>Cliford</b> </p>
                 <div className='w-10 h-10 rounded-full bg-yellow-300 overflow-hidden'></div>
             </div>
         </div>

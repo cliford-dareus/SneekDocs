@@ -1,9 +1,14 @@
 import { Request, Response } from "express";
 import Doc from "../models/doc";
 
-export const getDoc = (req: Request, res: Response) => {
-    console.log('You got access')
-    res.json({ msg: "hello"})
+export const getDoc = async (req: Request, res: Response) => {
+    const { userId } = res.locals.jwtPayLoad;
+
+    const docs = await Doc.find({
+        user: userId
+    });
+    
+    res.status(200).json(docs);
 };
 
 export const createDoc =async (req: Request, res: Response) => {
@@ -13,7 +18,7 @@ export const createDoc =async (req: Request, res: Response) => {
     if(!content){
         console.log('Add some text')
         return
-    } 
+    };
 
     const doc = await Doc.create({
         name,
