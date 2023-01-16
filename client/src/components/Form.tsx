@@ -18,7 +18,7 @@ const Form = ({name, placeholder, value, type, onchange}: form) => {
             {name}
         </label>
         <input 
-            className='w-full px-2 py-1 border-solid border rounded-md outline-none mt-1 '
+            className='w-full px-2 py-1 border-solid border rounded-md outline-none mt-1 text-blackd'
             name = {name}
             type = {type}
             placeholder = {placeholder}

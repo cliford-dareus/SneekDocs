@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Navbar from "../../components/navbar";
 import { useGetDocsQuery } from "../../features/api";
-import { Files } from "../dashbord";
+import { Files } from "../dashboard";
 
 const Document = () => {
   const { data } = useGetDocsQuery({});
@@ -17,11 +17,31 @@ const Document = () => {
   console.log(data);
 
   return (
-    <div className="w-full h-full">
-      <Navbar />
-      <div className="text-white">
+    <div className="w-full h-full bg-black">
+      <div className="w-full py-4 px-4 flex justify-between items-center">
+        <Link to="/" className="text-2xl text-white">
+          SNEEKDOCS
+        </Link>
+
+        <div className="flex gap-2">
+          <button className="px-4 py-1 bg-blue-800 text-white rounded-md">
+            Save
+          </button>
+          <button
+            className="px-4 py-1 bg-blue-800 text-white rounded-md"
+            onClick={() => setEdit(!edit)}
+          >
+            Edit
+          </button>
+        </div>
+      </div>
+      <div className="text-white h-5/6 overflow-hidden bg-white">
         {document && (
-          <ReactQuill readOnly={edit} value={document[0]?.content} />
+          <ReactQuill
+            readOnly={edit}
+            value={document[0]?.content}
+            style={{ height: "90%", color: 'black' }}
+          />
         )}
       </div>
     </div>

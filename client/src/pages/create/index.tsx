@@ -1,12 +1,13 @@
 import React, { useRef, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../app/hook";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "react-quill/dist/quill.bubble.css";
 import { useCreateDocMutation } from "../../features/api";
 
 const CreateDoc = () => {
+  const { title } = useParams()
   const [value, setValue] = useState<string>("");
   const editorRef = useRef<ReactQuill>(null);
   const editor = editorRef.current?.getEditor();
@@ -19,7 +20,7 @@ const CreateDoc = () => {
     console.log("saved");
   };
 
-  console.log(editorRef.current);
+  console.log(title);
   return (
     <div className="bg-black h-full">
       <div className="w-full py-4 px-8">
