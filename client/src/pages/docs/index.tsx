@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import { Link, useLocation } from "react-router-dom";
-import Navbar from "../../components/navbar";
 import { useGetDocsQuery } from "../../features/api";
 import { Files } from "../dashboard";
 

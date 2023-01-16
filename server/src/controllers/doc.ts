@@ -28,3 +28,14 @@ export const createDoc =async (req: Request, res: Response) => {
 
     res.status(201).json({ doc, msg: `Document saved`});
 };
+
+export const updateDoc = async (req: Request, res: Response) => {
+    const { name, content, id } = req.body;
+
+    const doc = await Doc.findOneAndUpdate({ _id: id }, {
+        name,
+        content
+    });
+
+    res.status(200).json( doc );
+};
