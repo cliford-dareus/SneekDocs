@@ -9,7 +9,7 @@ import Document from "./pages/docs";
 
 function App() {
   return (
-    <div className="width-screen h-screen bg-black">
+    <div className="width-screen h-screen overflow-hidden bg-black">
       <BrowserRouter>
         <Routes>
           <Route path="register" element={<Register />} />

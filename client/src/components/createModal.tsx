@@ -12,10 +12,9 @@ const CreateModal = ({
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
   };
-
-  console.log(title);
+  
   return (
-    <div className="absolute w-full h-4/5 p-4 bg-blue-900 z-30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md">
+    <div className="absolute w-full h-4/5 p-4 bg-sky-600 z-30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md">
       <button className="text-white absolute top-4 right-4" onClick={() => setOpenModal(false)}>
         X
       </button>

@@ -35,13 +35,21 @@ export const apiSlice = createApi({
         method: "POST",
         body,
       }),
-      invalidatesTags: ['docs']
+      invalidatesTags: ["docs"],
     }),
     getDocs: build.query({
       query: () => ({
         url: "/api/v1/doc",
       }),
       providesTags: ["docs"],
+    }),
+    editDoc: build.mutation({
+      query: (body) => ({
+        url: "/api/v1/doc/edit",
+        method: "PATCH",
+        body,
+      }),
+      invalidatesTags: ["docs"],
     }),
   }),
 });
@@ -50,5 +58,6 @@ export const {
   useRegisterUserMutation,
   useLoginUserMutation,
   useCreateDocMutation,
-  useGetDocsQuery
+  useGetDocsQuery,
+  useEditDocMutation
 } = apiSlice;

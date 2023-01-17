@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.route('/create').post( checkAuth, createDoc);
 router.route('/').get( checkAuth, getDoc);
-router.route('/edit').post( checkAuth, updateDoc );
+router.route('/edit').patch( checkAuth, updateDoc );
 
 export default router;

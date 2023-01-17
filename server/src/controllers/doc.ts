@@ -31,7 +31,7 @@ export const createDoc =async (req: Request, res: Response) => {
 
 export const updateDoc = async (req: Request, res: Response) => {
     const { name, content, id } = req.body;
-
+    
     const doc = await Doc.findOneAndUpdate({ _id: id }, {
         name,
         content

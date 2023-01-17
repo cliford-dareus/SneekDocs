@@ -16,7 +16,7 @@ const CreateDoc = () => {
   const [create] = useCreateDocMutation();
 
   const saveDoc = async () => {
-    await create({ content: value, name: "World" });
+    await create({ content: value, name: title });
     console.log("saved");
   };
 
