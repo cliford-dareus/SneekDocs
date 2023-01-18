@@ -7,11 +7,11 @@ import { Files } from "../dashboard";
 interface Editable {
   title: string;
   content: string;
-}
+};
 
 const Document = () => {
   const { data } = useGetDocsQuery({});
-  const [ save ] = useEditDocMutation();
+  const [save] = useEditDocMutation();
   const docId = useLocation().pathname.split("document/")[1];
   const [editData, setEditData] = useState<Editable | null>(null);
   const [edit, setEdit] = useState<boolean>(true);
@@ -19,7 +19,7 @@ const Document = () => {
   const saveEdit = () => {
     if (!edit) {
       // save the new data
-      save({...editData, id: docId})
+      save({ ...editData, id: docId });
     }
   };
 
@@ -44,7 +44,7 @@ const Document = () => {
 
   return (
     <div className="w-full h-full bg-black">
-      <div className="w-full py-4 px-4 flex justify-between items-center">
+      <div className="w-full h-20 py-4 px-4 flex justify-between items-center">
         <Link to="/" className="text-2xl text-white">
           SNEEKDOCS
         </Link>
@@ -64,7 +64,7 @@ const Document = () => {
           </button>
         </div>
       </div>
-      <div className="text-white h-5/6 overflow-hidden bg-white">
+      <div className="text-white h-[calc(100%-5rem)] overflow-hidden bg-white">
         {document && (
           <ReactQuill
             readOnly={edit}

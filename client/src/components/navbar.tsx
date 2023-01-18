@@ -4,7 +4,7 @@ import Form from './Form';
 
 const Navbar = () => {
   return (
-    <header className='width-full flex justify-between py-4 px-4 border-b'>
+    <header className='w-full h-20 fixed top-0 left-0 z-20 bg-black flex justify-between items-center py-4 px-4 border-b'>
         <Link to='/' className='text-2xl text-white'>SNEEKDOCS</Link>
         {<div className='hidden md:flex w-1/3'>
            <Form 

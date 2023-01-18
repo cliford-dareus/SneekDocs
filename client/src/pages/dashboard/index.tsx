@@ -35,8 +35,8 @@ const Home = () => {
     <div className="w-full h-full">
       <Navbar />
 
-      <main className="w-full px-8 py-4 flex flex-col gap-2">
-        <section className="w-full overflow-hidden md:w-3/4 h-60 m-auto flex gap-4 relative">
+      <main className="w-full h-[calc(100%-5rem)] p-4 flex flex-col gap-4 mt-20">
+        <section className="w-full overflow-hidden md:w-3/4 h-1/3 md:mx-auto flex gap-4 relative">
           {openModal && <CreateModal setOpenModal={setOpenModal} />}
           <div
             onClick={() => setOpenModal(true)}
@@ -82,7 +82,7 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="w-full md:w-3/4 h-96 overflow-hidden m-auto flex flex-col md:flex-row gap-2 text-white">
+        <section className="w-full md:w-3/4 h-3/5 overflow-hidden flex flex-col md:flex-row md:mx-auto gap-2 text-white">
           <div className="w-full md:w-1/2 md:h-full flex h-1/2 bg-sky-900 rounded-md p-2">
             <h2 className="font-bold">Templates</h2>
           </div>

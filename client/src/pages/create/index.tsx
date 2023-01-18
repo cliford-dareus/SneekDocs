@@ -12,43 +12,38 @@ const CreateDoc = () => {
   const editorRef = useRef<ReactQuill>(null);
   const editor = editorRef.current?.getEditor();
   const editorPriv = editorRef.current?.makeUnprivilegedEditor(editor!);
-
   const [create] = useCreateDocMutation();
 
   const saveDoc = async () => {
     await create({ content: value, name: title });
-    console.log("saved");
   };
 
-  console.log(title);
   return (
     <div className="bg-black h-full">
-      <div className="w-full py-4 px-8">
+      <div className="w-full p-4 h-20 flex justify-between items-center">
         <Link to="/" className="text-2xl text-white">
           SNEEKDOCS
         </Link>
+
+        <div className="flex gap-2">
+          <button
+            className="px-4 py-1 bg-blue-800 text-white rounded-md"
+            onClick={saveDoc}
+          >
+            Save
+          </button>
+        </div>
       </div>
 
-      <main className="p-4 h-5/6 bg-white">
+      <main className="p-4 h-[calc(100%-5rem)] bg-white">
         <ReactQuill
           ref={editorRef}
           theme={"snow"}
           value={value}
           onChange={setValue}
-          style={{ width: "100%", height: "90%" }}
+          style={{ width: "100%", height: "90%"}}
         />
       </main>
-
-      <ReactQuill
-        theme="bubble"
-        value={editorPriv?.getHTML()}
-        readOnly
-        style={{ color: "white" }}
-      />
-
-      <button onClick={saveDoc} className="bg-white">
-        Save
-      </button>
     </div>
   );
 };
