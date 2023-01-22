@@ -51,6 +51,13 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ["docs"],
     }),
+    deleteDoc: build.mutation({
+      query: (id) => ({
+        url: `/api/v1/doc/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["docs"],
+    }),
   }),
 });
 
@@ -59,5 +66,6 @@ export const {
   useLoginUserMutation,
   useCreateDocMutation,
   useGetDocsQuery,
-  useEditDocMutation
+  useEditDocMutation,
+  useDeleteDocMutation
 } = apiSlice;

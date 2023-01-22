@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import CreateModal from "../../components/createModal";
 import Navbar from "../../components/navbar";
 import { useGetDocsQuery } from "../../features/api";
+import { motion } from "framer-motion";
 
 export interface Files {
   _id: string;
@@ -13,7 +14,27 @@ export interface Files {
   createdAt: string;
   updatedAt: string;
   __v: number;
-}
+};
+
+const container = {
+  hidden: { opacity: 1, scale: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const item = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
 
 const Home = () => {
   const [ openModal, setOpenModal ] = useState<boolean>(false)
@@ -32,12 +53,16 @@ const Home = () => {
   };
 
   return (
-    <div className="w-full h-full">
+    <motion.div 
+      className="w-full h-screen"
+      initial={{  width: 0}}
+      animate={{ width: '100%'}}
+      exit={{opacity: 0, width: innerWidth}}
+    >
       <Navbar />
-
-      <main className="w-full h-[calc(100%-5rem)] p-4 flex flex-col gap-4 mt-20">
+      <main className="w-full h-[calc(100%-5rem)] md:h-3/4 p-4 flex flex-col gap-4 mt-20">
         <section className="w-full overflow-hidden md:w-3/4 h-1/3 md:mx-auto flex gap-4 relative">
-          {openModal && <CreateModal setOpenModal={setOpenModal} />}
+          {openModal && <CreateModal setOpenModal={setOpenModal} openModal={openModal} />}
           <div
             onClick={() => setOpenModal(true)}
             className="w-1/5 md:w-48 h-full bg-sky-700 flex items-center justify-center rounded-md text-white"
@@ -88,23 +113,30 @@ const Home = () => {
           </div>
           <div className="w-full md:w-1/2 md:h-full flex flex-col h-1/2  bg-sky-900 rounded-md relative">
             <h2 className="absolute top-2 left-2 font-bold z-10">Your Files</h2>
-            <div className="w-full h-full mt-10 px-2 flex flex-col overflow-y-scroll">
+            <motion.div
+              className="w-full h-full mt-10 px-2 flex flex-col overflow-y-scroll"
+              variants={container}
+              initial="hidden"
+              animate="visible"
+            >
               {data?.map((file: Files) => {
                 return (
-                  <Link
-                    key={file._id}
-                    to={`document/${file._id}`}
-                    className="bg-sky-700 p-1 rounded-md flex mb-2"
-                  >
-                    <p>{file.name}</p>
-                  </Link>
+                  <motion.div key={file._id} variants={item}>
+                    <Link
+                      
+                      to={`document/${file._id}`}
+                      className="bg-sky-700 p-1 rounded-md flex mb-2"
+                    >
+                      <p>{file.name}</p>
+                    </Link>
+                  </motion.div>
                 );
               })}
-            </div>
+            </motion.div>
           </div>
         </section>
       </main>
-    </div>
+    </motion.div>
   );
 };
 
