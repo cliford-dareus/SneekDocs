@@ -20,9 +20,9 @@ const CreateModal = ({
   return (
     <motion.div
       className="absolute w-full flex flex-col items-center h-5/6 p-4 -translate-y-1/2 bg-sky-600 z-50 rounded-md"
-      initial={{ y: 150 }}
-      animate={{ y: 20 }}
-      exit={{ y: 150}}
+      initial={{ y: 150, opacity: 0 }}
+      animate={{ y: 20 , opacity: 1}}
+      exit={{ y: 250, opacity: 0}}
     >
       <button
         className="text-white text-2xl absolute top-4 right-4"

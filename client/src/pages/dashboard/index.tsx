@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import CreateModal from "../../components/createModal";
 import Navbar from "../../components/navbar";
 import { useGetDocsQuery } from "../../features/api";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Slide from "../../components/slide";
 import { IoAdd, IoChevronBack, IoChevronForward } from "react-icons/io5";
 
@@ -64,9 +64,11 @@ const Home = () => {
       <Navbar />
       <main className="w-full h-[calc(100%-5rem)] md:h-3/4 p-4 flex flex-col gap-4 mt-20">
         <section className="w-full overflow-hidden md:w-3/4 h-1/3 md:mx-auto flex gap-4 relative">
-          {openModal && (
-            <CreateModal setOpenModal={setOpenModal} openModal={openModal} />
-          )}
+          <AnimatePresence>
+            {openModal && (
+              <CreateModal setOpenModal={setOpenModal} openModal={openModal} />
+            )}
+          </AnimatePresence>
           <div
             onClick={() => setOpenModal(true)}
             className="w-1/5 text-3xl md:w-48 h-full bg-sky-700 flex items-center justify-center rounded-md text-white"
